@@ -48,13 +48,10 @@ class CalculatorViewModel : ViewModel() {
             is CalculatorUtilAction.Comma -> {
 
             }
-            else -> {
-                null
-            }
         }
     }
 
-    fun checkOperatorInput(operatorInput: CalculatorUtilAction) {
+    fun checkOperatorInput(operatorInput: CalculatorOperatorAction) {
         when (operatorInput) {
             is CalculatorOperatorAction.Divide -> {
                 operator.value = "/"
@@ -67,9 +64,6 @@ class CalculatorViewModel : ViewModel() {
             }
             is CalculatorOperatorAction.Multiply -> {
                 operator.value = "*"
-            }
-            else -> {
-                null
             }
         }
     }
