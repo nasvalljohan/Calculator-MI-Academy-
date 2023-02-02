@@ -1,8 +1,10 @@
 package com.jojjnator.kalkylator.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-<<<<<<< Updated upstream
-=======
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -10,17 +12,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.jojjnator.kalkylator.CalculatorUtilAction
-import com.jojjnator.kalkylator.CalculatorOperatorAction
 import com.jojjnator.kalkylator.ui.theme.BackgroundColor
 import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
->>>>>>> Stashed changes
 
+@Preview
 @Composable
-<<<<<<< Updated upstream
-fun Calculator(){
-=======
 fun Calculator() {
 
     val viewModel = viewModel { CalculatorViewModel() }
@@ -46,7 +43,7 @@ fun Calculator() {
         )
         {
             Text(
-                text = viewModel.state.value + viewModel.operator.value + viewModel.state2.value,
+                text = "500 + 500",
                 fontWeight = FontWeight.Light,
                 fontSize = 25.sp,
                 modifier = Modifier.padding(10.dp)
@@ -58,12 +55,12 @@ fun Calculator() {
         ) {
             CalculatorButton(
                 modifier = modifierBigBox
-                    .clickable { viewModel.checkInput(CalculatorUtilAction.Clear) },
+                    .clickable { "Value" },
                 operator = "CLEAR",
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorOperatorAction.Divide) },
+                    .clickable { },
                 operator = "/"
             )
         }
@@ -73,7 +70,7 @@ fun Calculator() {
         ) {
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable {  },
+                    .clickable { },
                 operator = "7"
             )
             CalculatorButton(
@@ -163,6 +160,5 @@ fun Calculator() {
             )
         }
     }
->>>>>>> Stashed changes
 
 }
