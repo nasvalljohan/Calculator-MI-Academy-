@@ -64,3 +64,10 @@ class CalculatorViewModel : ViewModel() {
     }
 }
 
+enum class Operators(val op: String){
+    PLUS("+"),
+    MINUS("-"),
+    MULTIPLY("*"),
+    DIVIDE("/")
+}
+
