@@ -42,7 +42,7 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
-    private fun setNumberToInput(action: CalculatorAction.SetNumber, operatorInput: String){
+    private fun setNumberToInput(action: CalculatorAction.SetNumber, operatorInput: String) {
         if (operatorInput.isEmpty()) {
             firstInput.value += action.number
         }
@@ -50,7 +50,8 @@ class CalculatorViewModel : ViewModel() {
             secondInput.value += action.number
         }
     }
-    private fun addCommaToDigit(){
+
+    private fun addCommaToDigit() {
         if (secondInput.value.isNotEmpty()) {
             secondInput.value += "."
         }
@@ -58,7 +59,8 @@ class CalculatorViewModel : ViewModel() {
             firstInput.value += "."
         }
     }
-    private fun doCalculation(operatorInput: String){
+
+    private fun doCalculation(operatorInput: String) {
         if (operatorInput == Operators.PLUS.stringOP) {
             calculatedSum.value = firstInput.value.toDouble() + secondInput.value.toDouble()
         }
@@ -74,7 +76,7 @@ class CalculatorViewModel : ViewModel() {
     }
 }
 
-enum class Operators(val stringOP: String){
+enum class Operators(val stringOP: String) {
     PLUS("+"),
     MINUS("-"),
     MULTIPLY("*"),
