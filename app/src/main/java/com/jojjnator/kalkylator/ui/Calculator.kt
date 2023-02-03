@@ -20,7 +20,8 @@ import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
 @Composable
 fun Calculator() {
 
-    val viewModel = viewModel { CalculatorViewModel() }
+
+    val viewModel = viewModel {CalculatorViewModel()}
 
     val fillMaxWidthModifier: Modifier = Modifier.fillMaxWidth()
     val modifierSmallBox: Modifier = Modifier.size(height = 70.dp, width = 90.dp)
