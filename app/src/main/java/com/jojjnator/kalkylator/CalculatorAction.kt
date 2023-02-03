@@ -1,11 +1,14 @@
 package com.jojjnator.kalkylator
 
+import com.jojjnator.kalkylator.viewmodel.Operators
+
+
 sealed interface CalculatorAction {
 
     object Clear : CalculatorAction
     object Comma : CalculatorAction
-    data class DoCalculation(val operator: String) : CalculatorAction
-    data class SetOperator(val operator: String) : CalculatorAction
+    object DoCalculation : CalculatorAction
+    data class SetOperator(val operator: Operators) : CalculatorAction
     data class SetNumber(val number: Int) : CalculatorAction
 
 }

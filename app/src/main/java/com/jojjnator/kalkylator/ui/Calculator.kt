@@ -16,6 +16,7 @@ import com.jojjnator.kalkylator.CalculatorAction
 import com.jojjnator.kalkylator.ui.theme.BackgroundColor
 import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
+import com.jojjnator.kalkylator.viewmodel.Operators
 
 @Preview
 @Composable
@@ -85,7 +86,7 @@ fun Calculator() {
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator("/")) },
+                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.DIVIDE)) },
                 operator = "/"
             )
         }
@@ -110,7 +111,7 @@ fun Calculator() {
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator("*")) },
+                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MULTIPLY)) },
                 operator = "*"
             )
         }
@@ -135,7 +136,7 @@ fun Calculator() {
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator("-")) },
+                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MINUS)) },
                 operator = "-"
             )
         }
@@ -160,7 +161,7 @@ fun Calculator() {
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator("+")) },
+                    .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.PLUS)) },
                 operator = "+"
             )
         }
@@ -180,7 +181,7 @@ fun Calculator() {
             )
             CalculatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation(viewModel.operator.value)) },
+                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation) },
                 operator = "="
             )
         }

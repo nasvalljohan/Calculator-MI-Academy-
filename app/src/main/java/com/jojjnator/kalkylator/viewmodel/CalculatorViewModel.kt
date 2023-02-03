@@ -26,16 +26,16 @@ class CalculatorViewModel : ViewModel() {
                 calculatedSum.value = 0.0
             }
             is CalculatorAction.DoCalculation -> {
-                if (action.operator == "+") {
+                if (operator.value == "+") {
                     calculatedSum.value = firstInput.value.toDouble() + secondInput.value.toDouble()
                 }
-                if (action.operator == "*") {
+                if (operator.value == "*") {
                     calculatedSum.value = firstInput.value.toDouble() * secondInput.value.toDouble()
                 }
-                if (action.operator == "/") {
+                if (operator.value == "/") {
                     calculatedSum.value = firstInput.value.toDouble() / secondInput.value.toDouble()
                 }
-                if (action.operator == "-") {
+                if (operator.value == "-") {
                     calculatedSum.value = firstInput.value.toDouble() - secondInput.value.toDouble()
                 }
             }
@@ -57,7 +57,7 @@ class CalculatorViewModel : ViewModel() {
                 }
             }
             is CalculatorAction.SetOperator -> {
-                operator.value = action.operator
+                operator.value = action.operator.op
 
             }
         }
