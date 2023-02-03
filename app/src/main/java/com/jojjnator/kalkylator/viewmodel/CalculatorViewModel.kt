@@ -7,41 +7,45 @@ import com.jojjnator.kalkylator.CalculatorAction
 
 class CalculatorViewModel : ViewModel() {
 
-    var secondInput = mutableStateOf(0)
+    var secondInput = mutableStateOf("")
         private set
-    var firstInput = mutableStateOf(0)
+    var firstInput = mutableStateOf("")
         private set
     var operator = mutableStateOf("")
         private set
 
-    var calculatedSum = mutableStateOf(0)
+    var calculatedSum = mutableStateOf(0.0)
         private set
 
     fun checkInput(action: CalculatorAction) {
         when (action) {
             is CalculatorAction.Clear -> {
                 operator.value = ""
-                secondInput.value = 0
-                firstInput.value = 0
-                calculatedSum.value = 0
+                secondInput.value = ""
+                firstInput.value = ""
+                calculatedSum.value = 0.0
             }
             is CalculatorAction.DoCalculation -> {
                 if (action.operator == "+") {
-                    calculatedSum.value = firstInput.value + secondInput.value
+                    calculatedSum.value = firstInput.value.toDouble() + secondInput.value.toDouble()
                 }
                 if (action.operator == "*") {
-                    calculatedSum.value = firstInput.value * secondInput.value
+                    calculatedSum.value = firstInput.value.toDouble() * secondInput.value.toDouble()
                 }
                 if (action.operator == "/") {
-                    calculatedSum.value = firstInput.value / secondInput.value
+                    calculatedSum.value = firstInput.value.toDouble() / secondInput.value.toDouble()
                 }
                 if (action.operator == "-") {
-                    calculatedSum.value = firstInput.value - secondInput.value
+                    calculatedSum.value = firstInput.value.toDouble() - secondInput.value.toDouble()
                 }
             }
             is CalculatorAction.Comma -> {
-                secondInput.value.toDouble()
-                firstInput.value.toDouble()
+                if (secondInput.value.isNotEmpty()) {
+                    secondInput.value += "."
+                }
+                if (secondInput.value.isEmpty() && operator.value.isEmpty() && firstInput.value.isNotEmpty()) {
+                    firstInput.value += "."
+                }
             }
 
             is CalculatorAction.SetNumber -> {
@@ -58,27 +62,5 @@ class CalculatorViewModel : ViewModel() {
             }
         }
     }
-}
-
-
-enum class Digit(number: Int) {
-    ZERO(0),
-    ONE(1),
-    TWO(2),
-    THREE(3),
-    FOUR(4),
-    FIVE(5),
-    SIX(6),
-    SEVEN(7),
-    EIGHT(8),
-    NINE(9),
-
-}
-
-enum class Operator(operator: String) {
-    MULTIPLY("*"),
-    DIVIDE("/"),
-    ADD("+"),
-    SUBTRACT("-"),
 }
 

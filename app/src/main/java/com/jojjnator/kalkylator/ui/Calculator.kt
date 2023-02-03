@@ -44,7 +44,7 @@ fun Calculator() {
 
         )
         {
-            Column() {
+            Column {
                 Text(
                     text = viewModel.calculatedSum.value.toString(),
                     fontWeight = FontWeight.Light,
@@ -54,7 +54,7 @@ fun Calculator() {
 
                 Row {
                     Text(
-                        text = viewModel.firstInput.value.toString(),
+                        text = viewModel.firstInput.value,
                         fontSize = 25.sp,
                         modifier = Modifier.padding(10.dp)
                     )
@@ -64,7 +64,7 @@ fun Calculator() {
                         modifier = Modifier.padding(10.dp)
                     )
                     Text(
-                        text = viewModel.secondInput.value.toString(),
+                        text = viewModel.secondInput.value,
                         fontSize = 25.sp,
                         modifier = Modifier.padding(10.dp)
                     )
