@@ -55,7 +55,7 @@ fun Calculator() {
         ) {
             CalculatorButton(
                 modifier = modifierBigBox
-                    .clickable { "Value" },
+                    .clickable { },
                 operator = "CLEAR",
             )
             CalculatorButton(
