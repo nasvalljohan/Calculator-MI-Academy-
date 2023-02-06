@@ -33,7 +33,7 @@ class CalculatorViewModel : ViewModel() {
             }
 
             is CalculatorAction.SetNumber -> {
-                setNumberToInput(action = actionFromUI, operatorInput = operator.value)
+                setNumberFromAction(action = actionFromUI, operatorInput = operator.value)
             }
             is CalculatorAction.SetOperator -> {
                 operator.value = actionFromUI.operator.stringOP
@@ -42,7 +42,7 @@ class CalculatorViewModel : ViewModel() {
         }
     }
 
-    private fun setNumberToInput(action: CalculatorAction.SetNumber, operatorInput: String) {
+    private fun setNumberFromAction(action: CalculatorAction.SetNumber, operatorInput: String) {
         if (operatorInput.isEmpty()) {
             firstInput.value += action.number
         }
