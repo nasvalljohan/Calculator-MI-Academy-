@@ -4,7 +4,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.jojjnator.kalkylator.CalculatorAction
 
-
 class CalculatorViewModel : ViewModel() {
 
     var secondInput = mutableStateOf("")
@@ -25,20 +24,16 @@ class CalculatorViewModel : ViewModel() {
                 firstInput.value = ""
                 calculatedSum.value = 0.0
             }
-            is CalculatorAction.DoCalculation -> {
-                doCalculation(operatorInput = operator.value)
-            }
-            is CalculatorAction.Comma -> {
-                addCommaToDigit()
-            }
+            is CalculatorAction.DoCalculation -> doCalculation(operatorInput = operator.value)
 
-            is CalculatorAction.SetNumber -> {
-                setNumberFromAction(action = actionFromUI, operatorInput = operator.value)
-            }
-            is CalculatorAction.SetOperator -> {
-                operator.value = actionFromUI.operator.stringOP
+            is CalculatorAction.Comma -> addCommaToDigit()
 
-            }
+            is CalculatorAction.SetNumber -> setNumberFromAction(
+                action = actionFromUI,
+                operatorInput = operator.value
+            )
+
+            is CalculatorAction.SetOperator -> operator.value = actionFromUI.operator.stringOP
         }
     }
 

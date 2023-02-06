@@ -28,7 +28,6 @@ import com.jojjnator.kalkylator.ui.theme.ButtonColor
 fun CalculatorButton(
     modifier: Modifier = Modifier,
     operator: String = "7",
-    //onClick: (String) -> Unit
 ){
     Box(
         modifier = Modifier
