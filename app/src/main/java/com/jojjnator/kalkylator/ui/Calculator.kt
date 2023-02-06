@@ -1,10 +1,13 @@
 package com.jojjnator.kalkylator.ui
 
+import androidx.compose.animation.animateColor
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,6 +34,12 @@ fun Calculator() {
     val modifierMediumBox: Modifier = Modifier.size(height = 70.dp, width = 180.dp)
     val modifierBigBox: Modifier = Modifier.size(height = 70.dp, width = 270.dp)
 
+    val sumOfInput by animateIntAsState(
+        targetValue = viewModel.calculatedSum.value.toInt(),
+        tween(
+            durationMillis = 1000
+        )
+    )
 
     Column(
         modifier = Modifier
@@ -49,9 +58,9 @@ fun Calculator() {
         {
             Column {
                 Text(
-                    text = viewModel.calculatedSum.value.toString(),
+                    text = sumOfInput.toString(),
                     fontWeight = FontWeight.Light,
-                    fontSize = 25.sp,
+                    fontSize = 30.sp,
                     modifier = Modifier.padding(10.dp)
                 )
 
@@ -98,16 +107,16 @@ fun Calculator() {
         ) {
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[0])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[0])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[1])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[1])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[2])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[2])) },
+                "?")
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
                     .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MULTIPLY)) },
@@ -120,16 +129,16 @@ fun Calculator() {
         ) {
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[3])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[3])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[4])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[4])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[5])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[5])) },
+                "?")
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
                     .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MINUS)) },
@@ -142,16 +151,16 @@ fun Calculator() {
         ) {
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[6])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[6])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[7])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[7])) },
+                "?")
             CalculatorNumberButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[8])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[8])) },
+                "?")
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
                     .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.PLUS)) },
@@ -164,8 +173,8 @@ fun Calculator() {
         ) {
             CalculatorNumberButton(
                 modifier = modifierMediumBox
-                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[9])) }
-            )
+                    .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[9])) },
+                "?")
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
                     .clickable { viewModel.checkInput(CalculatorAction.Comma) },
