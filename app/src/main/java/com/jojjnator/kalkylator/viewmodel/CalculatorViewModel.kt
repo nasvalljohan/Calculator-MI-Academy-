@@ -17,7 +17,8 @@ class CalculatorViewModel : ViewModel() {
         private set
     var calculatedSum = mutableStateOf(0.0)
         private set
-    var numbers = mutableListOf(1,2,3,4,5,6,7,8,9,0)
+    var numbers = mutableListOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+        private set
 
     fun checkInput(actionFromUI: CalculatorAction) {
         when (actionFromUI) {
@@ -26,7 +27,7 @@ class CalculatorViewModel : ViewModel() {
                 secondInput.value = ""
                 firstInput.value = ""
                 calculatedSum.value = 0.0
-                crapTheLator()
+                crapTheCulator()
             }
             is CalculatorAction.DoCalculation -> doCalculation(operatorInput = operator.value)
 
@@ -40,17 +41,23 @@ class CalculatorViewModel : ViewModel() {
             is CalculatorAction.SetOperator -> operator.value = actionFromUI.operator.stringOP
         }
     }
+    private fun crapTheCulator() {
+        numbers = numbers.shuffled().toMutableList()
+    }
 
     private fun setNumberFromAction(operatorInput: String, action: CalculatorAction.SetNumber) {
         if (operatorInput.isEmpty()) {
+            if (firstInput.value.isEmpty() && action.number == 0) {
+                return
+            }
             firstInput.value += action.number
         }
         if (operatorInput.isNotEmpty()) {
+            if (firstInput.value.isEmpty() && action.number == 0) {
+                return
+            }
             secondInput.value += action.number
         }
-    }
-    private fun crapTheLator(){
-        numbers = numbers.shuffled().toMutableList()
     }
 
     private fun addCommaToDigit() {
