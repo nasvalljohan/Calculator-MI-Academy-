@@ -1,6 +1,5 @@
 package com.jojjnator.kalkylator.ui
 
-import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -15,19 +14,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.jojjnator.kalkylator.CalculatorAction
 import com.jojjnator.kalkylator.ui.theme.BackgroundColor
 import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
 import com.jojjnator.kalkylator.viewmodel.Operators
 import org.koin.androidx.compose.koinViewModel
-import kotlin.random.Random
 
 @Preview
 @Composable
 fun Calculator(viewModel: CalculatorViewModel = koinViewModel()) {
-
 
     val fillMaxWidthModifier: Modifier = Modifier.fillMaxWidth()
     val modifierSmallBox: Modifier = Modifier.size(height = 70.dp, width = 90.dp)
@@ -49,11 +45,28 @@ fun Calculator(viewModel: CalculatorViewModel = koinViewModel()) {
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Column(modifier = Modifier
+            .padding(bottom = 10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "The Crapculator",
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
+                color = Color.White,
+            )
+            Text(
+                text = "Add something from API?",
+                fontWeight = FontWeight.Thin,
+                fontSize = 16.sp,
+                color = Color.White
+            )
+        }
         Box(
             modifier = Modifier
                 .background(color = ButtonColor)
-                .size(height = 240.dp, width = 355.dp)
-
+                .size(height = 200.dp, width = 355.dp)
         )
         {
             Column {
