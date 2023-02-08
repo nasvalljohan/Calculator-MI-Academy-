@@ -8,7 +8,7 @@ import com.jojjnator.kalkylator.model.QuoteModel
 import com.jojjnator.kalkylator.repository.QuoteRepositoryImpl
 import kotlinx.coroutines.launch
 
-class GoTViewModel : ViewModel() {
+class QuoteViewModel : ViewModel() {
 
     private val repo = QuoteRepositoryImpl()
     private val vmScope = viewModelScope

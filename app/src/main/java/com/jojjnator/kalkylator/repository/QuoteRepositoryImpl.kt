@@ -7,7 +7,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 
 
-class QuoteRepositoryImpl(): QuoteRepository {
+class QuoteRepositoryImpl: QuoteRepository {
 
     private val client = KtorClient()
     override suspend fun getQuote(): QuoteModel {

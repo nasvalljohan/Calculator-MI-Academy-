@@ -19,7 +19,7 @@ import com.jojjnator.kalkylator.interfaces.CalculatorAction
 import com.jojjnator.kalkylator.ui.theme.BackgroundColor
 import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
-import com.jojjnator.kalkylator.viewmodel.GoTViewModel
+import com.jojjnator.kalkylator.viewmodel.QuoteViewModel
 import com.jojjnator.kalkylator.viewmodel.Operators
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -28,7 +28,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun Calculator(
     viewModel: CalculatorViewModel = koinViewModel(),
-    goTViewModel: GoTViewModel = koinViewModel()
+    quoteViewModel: QuoteViewModel = koinViewModel()
 ) {
 
     val fillMaxWidthModifier: Modifier = Modifier.fillMaxWidth()
@@ -52,7 +52,7 @@ fun Calculator(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(30.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -62,13 +62,15 @@ fun Calculator(
                 fontSize = 30.sp,
                 color = Color.White,
             )
-            goTViewModel.data.value?.let {
-                Text(
-                    text = it.sentence,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 14.sp,
-                    color = Color.White
-                )
+            quoteViewModel.data.value?.let {
+                Column{
+                    Text(
+                        text = "${it.sentence} - ${it.character.name}",
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
+                }
             }
         }
         Column(
@@ -123,7 +125,7 @@ fun Calculator(
                         .clickable {
                             viewModel.checkInput(CalculatorAction.Clear)
                             cScope.launch {
-                                goTViewModel.newQuote()
+                                quoteViewModel.newQuote()
                             }
                         },
                     operator = "CLEAR",
