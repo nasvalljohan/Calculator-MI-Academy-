@@ -11,7 +11,10 @@ class QuoteRepositoryImpl: QuoteRepository {
 
     private val client = KtorClient()
     override suspend fun getQuote(): QuoteModel {
-        return client.getKtorClient.get("https://api.gameofthronesquotes.xyz/v1/random").body()
+        val response = client.getKtorClient.get("https://api.gameofthronesquotes.xyz/v1/random").body<QuoteModel>()
+        // Faulty API, on some data-points returns null on character.house.name/slug
+        return response
+
     }
 
 }
