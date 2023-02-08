@@ -1,4 +1,4 @@
-package com.jojjnator.kalkylator
+package com.jojjnator.kalkylator.interfaces
 
 import com.jojjnator.kalkylator.viewmodel.Operators
 

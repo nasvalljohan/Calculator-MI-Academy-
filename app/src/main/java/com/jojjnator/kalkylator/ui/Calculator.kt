@@ -14,16 +14,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.jojjnator.kalkylator.CalculatorAction
+import com.jojjnator.kalkylator.interfaces.CalculatorAction
 import com.jojjnator.kalkylator.ui.theme.BackgroundColor
 import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
+import com.jojjnator.kalkylator.viewmodel.GoTViewModel
 import com.jojjnator.kalkylator.viewmodel.Operators
 import org.koin.androidx.compose.koinViewModel
 
 @Preview
 @Composable
-fun Calculator(viewModel: CalculatorViewModel = koinViewModel()) {
+fun Calculator(viewModel: CalculatorViewModel = koinViewModel(), goTViewModel: GoTViewModel = koinViewModel()) {
 
     val fillMaxWidthModifier: Modifier = Modifier.fillMaxWidth()
     val modifierSmallBox: Modifier = Modifier.size(height = 70.dp, width = 90.dp)
@@ -57,7 +58,7 @@ fun Calculator(viewModel: CalculatorViewModel = koinViewModel()) {
                 color = Color.White,
             )
             Text(
-                text = "Add something from API?",
+                text = goTViewModel.response.value,
                 fontWeight = FontWeight.Thin,
                 fontSize = 16.sp,
                 color = Color.White
@@ -205,7 +206,8 @@ fun Calculator(viewModel: CalculatorViewModel = koinViewModel()) {
             )
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation) },
+                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation)
+                               goTViewModel.getData()},
                 operator = "="
             )
         }

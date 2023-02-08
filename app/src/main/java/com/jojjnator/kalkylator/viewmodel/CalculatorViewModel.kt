@@ -2,10 +2,7 @@ package com.jojjnator.kalkylator.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.jojjnator.kalkylator.CalculatorAction
-import java.util.*
-import kotlin.math.absoluteValue
-import kotlin.random.Random
+import com.jojjnator.kalkylator.interfaces.CalculatorAction
 
 class CalculatorViewModel : ViewModel() {
 
