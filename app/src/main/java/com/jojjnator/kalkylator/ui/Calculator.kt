@@ -58,7 +58,7 @@ fun Calculator(viewModel: CalculatorViewModel = koinViewModel(), goTViewModel: G
                 color = Color.White,
             )
             Text(
-                text = goTViewModel.response.value,
+                text = "API Response goes here",
                 fontWeight = FontWeight.Thin,
                 fontSize = 16.sp,
                 color = Color.White
@@ -206,8 +206,7 @@ fun Calculator(viewModel: CalculatorViewModel = koinViewModel(), goTViewModel: G
             )
             CalculatorOperatorButton(
                 modifier = modifierSmallBox
-                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation)
-                               goTViewModel.getData()},
+                    .clickable { viewModel.checkInput(CalculatorAction.DoCalculation)},
                 operator = "="
             )
         }
