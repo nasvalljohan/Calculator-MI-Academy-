@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,7 +20,6 @@ import com.jojjnator.kalkylator.ui.theme.ButtonColor
 import com.jojjnator.kalkylator.viewmodel.CalculatorViewModel
 import com.jojjnator.kalkylator.viewmodel.QuoteViewModel
 import com.jojjnator.kalkylator.viewmodel.Operators
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Preview
@@ -36,7 +34,11 @@ fun Calculator(
     val modifierMediumBox: Modifier = Modifier.size(height = 70.dp, width = 180.dp)
     val modifierBigBox: Modifier = Modifier.size(height = 70.dp, width = 270.dp)
 
-    val cScope = rememberCoroutineScope()
+    val onClearClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.Clear)
+        quoteViewModel.newQuote()
+    }
+
 
     val sumOfInput by animateIntAsState(
         targetValue = viewModel.calculatedSum.value.toInt(),
@@ -63,7 +65,7 @@ fun Calculator(
                 color = Color.White,
             )
             quoteViewModel.data.value?.let {
-                Column{
+                Column {
                     Text(
                         text = "${it.sentence} - ${it.character.name}",
                         fontWeight = FontWeight.Medium,
@@ -122,11 +124,8 @@ fun Calculator(
             ) {
                 CalculatorOperatorButton(
                     modifier = modifierBigBox
-                        .clickable {
-                            viewModel.checkInput(CalculatorAction.Clear)
-                            cScope.launch {
-                                quoteViewModel.newQuote()
-                            }
+                        .clickable() {
+                            onClearClicked()
                         },
                     operator = "CLEAR",
                 )
