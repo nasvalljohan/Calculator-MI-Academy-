@@ -7,9 +7,9 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 
 
-class QuoteRepositoryImpl: QuoteRepository {
+class QuoteRepositoryImpl(private val client: KtorClient): QuoteRepository {
 
-    private val client = KtorClient()
+
     override suspend fun getQuote(): QuoteModel {
         val response = client.getKtorClient.get("https://api.gameofthronesquotes.xyz/v1/random").body<QuoteModel>()
         // Faulty API, on some data-points returns null on character.house.name/slug
