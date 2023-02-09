@@ -38,6 +38,27 @@ fun Calculator(
         viewModel.checkInput(CalculatorAction.Clear)
         quoteViewModel.newQuote()
     }
+    val onEqualsClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.DoCalculation)
+    }
+    val onCommaClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.Comma)
+    }
+    val onPlusClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.SetOperator(Operators.PLUS))
+    }
+    val onMinusClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.SetOperator(Operators.MINUS))
+    }
+    val onMultiplyClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.SetOperator(Operators.MULTIPLY))
+    }
+    val onDivideClicked: () -> Unit = {
+        viewModel.checkInput(CalculatorAction.SetOperator(Operators.DIVIDE))
+    }
+    val onNumberClicked: (int: Int) -> Unit = {
+        viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[it]))
+    }
 
 
     val sumOfInput by animateIntAsState(
@@ -131,7 +152,7 @@ fun Calculator(
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.DIVIDE)) },
+                        .clickable { onDivideClicked() },
                     operator = "/"
                 )
             }
@@ -141,22 +162,22 @@ fun Calculator(
             ) {
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[0])) },
+                        .clickable { onNumberClicked(0) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[1])) },
+                        .clickable { onNumberClicked(1) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[2])) },
+                        .clickable { onNumberClicked(2) },
                     "?"
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MULTIPLY)) },
+                        .clickable { onMultiplyClicked() },
                     operator = "*"
                 )
             }
@@ -166,22 +187,22 @@ fun Calculator(
             ) {
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[3])) },
+                        .clickable { onNumberClicked(3) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[4])) },
+                        .clickable { onNumberClicked(4) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[5])) },
+                        .clickable { onNumberClicked(5) },
                     "?"
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.MINUS)) },
+                        .clickable { onMinusClicked() },
                     operator = "-"
                 )
             }
@@ -191,22 +212,22 @@ fun Calculator(
             ) {
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[6])) },
+                        .clickable { onNumberClicked(6) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[7])) },
+                        .clickable { onNumberClicked(7) },
                     "?"
                 )
                 CalculatorNumberButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[8])) },
+                        .clickable { onNumberClicked(8) },
                     "?"
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetOperator(Operators.PLUS)) },
+                        .clickable { onPlusClicked() },
                     operator = "+"
                 )
             }
@@ -216,19 +237,17 @@ fun Calculator(
             ) {
                 CalculatorNumberButton(
                     modifier = modifierMediumBox
-                        .clickable { viewModel.checkInput(CalculatorAction.SetNumber(viewModel.numbers[9])) },
+                        .clickable { onNumberClicked(9) },
                     "?"
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable { viewModel.checkInput(CalculatorAction.Comma) },
+                        .clickable { onCommaClicked() },
                     operator = "."
                 )
                 CalculatorOperatorButton(
                     modifier = modifierSmallBox
-                        .clickable {
-                            viewModel.checkInput(CalculatorAction.DoCalculation)
-                        },
+                        .clickable { onEqualsClicked() },
                     operator = "="
                 )
             }
